@@ -1,27 +1,29 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Item from "../Items/Item";
-
-const products = [
-  {
-    id: 1,
-    name: "Shoes",
-    description: "Running shoes.",
-    price: "$5",
-    image: "https://dummyimage.com/300",
-    stock: 5,
-  },
-  {
-    id: 2,
-    name: "Macbook",
-    description: "Apple macbook.",
-    price: "$10",
-    image: "https://dummyimage.com/300",
-    stock: 0,
-  },
-];
+import axios from "axios"
 
 const ItemList = () => {
+  const [ products,setProduct]=useState([])
+  useEffect(()=>{
+ 
+    let config = {
+      method: 'get',
+      url: 'https://run.mocky.io/v3/a32a8025-5011-4b2c-b6b9-2caca3e32ebf',
+     
+    };
+    
+    axios(config)
+    .then( response=> {
+      let destacados=response.data.filter(x=>x.ondemand==true)
+      setProduct(destacados)
+     
+    })
+    .catch(error=> {
+      console.log(error);
+    });   
+
+  })
   return (
     <main>
       <Grid container justify="center" spacing={4}>

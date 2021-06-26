@@ -3,38 +3,22 @@ import { Button, ButtonGroup, Box } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-// const products = [
-//   {
-//     id: 1,
-//     name: "Shoes",
-//     description: "Running shoes.",
-//     price: "$5",
-//     image: "https://dummyimage.com/300",
-//     quantity: 5,
-//   },
-//   {
-//     id: 2,
-//     name: "Macbook",
-//     description: "Apple macbook.",
-//     price: "$10",
-//     image: "https://dummyimage.com/300",
-//     quantity: 0,
-//   },
-// ];
 
 const ItemCount = ({ stock }) => {
   const [num, setnum] = useState(0);
 
   const onAdd = () => {
-    if (stock.value < 0) {
+  
+    if (num<stock) 
       setnum(num + 1);
-    }
+    
   };
 
   const onRemove = () => {
-    if (stock.value > 0) {
+
+    if (num > 0) 
       setnum(num - 1);
-    }
+    
   };
   return (
     <div>
